@@ -1,0 +1,42 @@
+<div class="container">
+    <h1>Activity List</h1>
+    <form (ngSubmit)="addNote()" class="note-form">
+      <textarea [(ngModel)]="newNote.text" name="noteText" placeholder="Add a note..." required></textarea>
+      <input
+        [(ngModel)]="newNote.email"
+        name="noteEmail"
+        placeholder="Enter email"
+        type="email"
+        required
+      />
+      <div class="type-buttons">
+        <button
+          type="button"
+          *ngFor="let option of noteTypes"
+          [class.active]="newNote.type === option"
+          (click)="newNote.type = option"
+        >
+          <i [ngClass]="getIconClass(option)"></i>
+        </button>
+      </div>
+      <button type="submit" class="submit-button">Submit</button>
+    </form>
+  
+    <h2>Activity Feed</h2>
+    <ul class="activity-feed">
+      <li *ngFor="let note of notes">
+        <div class="icon">
+          <i [ngClass]="getIconClass(note.type)"></i>
+        </div>
+        <div class="content">
+          <p>
+            <strong>You had a {{ note.type }} with {{ note.email }}</strong>
+          </p>
+          <p class="timestamp">{{ note.timestamp | date: 'short' }}</p>
+          <p>{{ note.text }}</p>
+        </div>
+        <button (click)="deleteNote(note)" class="delete-button">Delete</button>
+      </li>
+    </ul>
+  </div>
+  

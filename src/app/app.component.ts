@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { ActivityListComponent } from './activity-list/activity-list.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  standalone: true,
+  imports: [ActivityListComponent],
+  template: '<app-activity-list></app-activity-list>',
 })
-export class AppComponent {
-  title = 'activity-list2';
-}
+export class AppComponent {}
